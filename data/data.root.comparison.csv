@@ -1,0 +1,19 @@
+sample,replicate,pasture,invasion,weight ,Color
+ESI,1,el.salto,invaded,0.343,Green
+ESI,2,el.salto,invaded,0.219,Pink
+ESI,3,el.salto,invaded,0.415,Pink
+ESUI,1,el.salto,uninvaded,0.151,Green
+ESUI,2,el.salto,uninvaded,0.198,Pink
+ESUI,3,el.salto,uninvaded,0.054,Pink 
+FI,1,finner,invaded,0.161,Green
+FI,2,finner,invaded,0.246,Pink
+FI,3,finner,invaded,0.031,Pink
+FUI,1,finner,uninvaded,0.361,Green
+FUI,2,finner,uninvaded,0.22,Pink
+FUI,3,finner,uninvaded,0.116,Pink 
+NCI,1,north.cuantes,invaded,0.14,Green
+NCI,2,north.cuantes,invaded,0.099,Pink
+NCI,3,north.cuantes,invaded,0.338,Pink
+NCUI,1,north.cuantes,uninvaded,0.024,Green
+NCUI,2,north.cuantes,uninvaded,0.76,Pink
+NCUI,3,north.cuantes,uninvaded,0.063,Pink 
