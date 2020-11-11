@@ -38,3 +38,9 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Figure files
+figures/Na_AutoclaveTime.tiff
+figures/logEC_AutoclaveTime.tiff
+figures/logP_AutoclaveTime.tiff
+figures/logS_AutoclaveTime.tiff
