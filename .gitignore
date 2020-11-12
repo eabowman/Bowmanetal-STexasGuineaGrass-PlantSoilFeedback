@@ -39,8 +39,15 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# Figure files
+# Figure and result files
 figures/Na_AutoclaveTime.tiff
 figures/logEC_AutoclaveTime.tiff
 figures/logP_AutoclaveTime.tiff
 figures/logS_AutoclaveTime.tiff
+figures/GuineaHeight_invasion.tiff
+figures/GuineaSeedling_InvasionSoilTreatment.tiff
+figures/GuineaSeedling_invasion.tiff
+figures/SeedlingGermination_Invasion.tiff
+figures/SeedlingGermination_InvasionSoilTreatment.tiff
+results/GerminationSummaryData.csv
+results/NativeSeedlingResults.csv
