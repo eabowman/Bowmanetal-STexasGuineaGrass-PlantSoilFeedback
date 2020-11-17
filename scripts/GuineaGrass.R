@@ -52,14 +52,18 @@ seedling.data %>%
 # and soil treatment columns
 seedling.data %>%
   select(invasion, soil.treatment,
-         guinea.grass.height.10.29.20, guinea.grass.height.11.6.20) %>%
+         guinea.grass.height.10.29.20,
+         guinea.grass.height.11.6.20,
+         guinea.grass.height.11.13.20) %>%
   gather(key = week, value = height, -invasion, -soil.treatment) %>%
   mutate(week = replace(week, week == 'guinea.grass.height.10.29.20',
                         'week1'),
          week = replace(week, week == 'guinea.grass.height.11.6.20',
                         'week2'),
+         week = replace(week, week == 'guinea.grass.height.11.13.20',
+                        'week3'),
          log.height = log(height)) %>%
-  filter(height != 0) -> time.data
+  filter(height != 0, !is.na(height)) -> time.data
 
 #--Check normality of data
 hist(time.data$height)
@@ -83,9 +87,11 @@ gls.summary <- summary(gls.seedling)
 #           row.names = F)
 
 #--Height
-gls.heigh <- gls(height ~ invasion * soil.treatment,
-                  data = time.data)
-gls.height <- summary(gls.seedling) # invasion sig.
+# focus on week 3 data
+time.data.week3 <- filter(time.data, week == 'week3')
+gls.height <- gls(log.height ~ invasion * soil.treatment,
+                  data = time.data.week3)
+gls.height <- summary(gls.height) # invasion sig.
 
 # write.csv(anova.seedling, 'results/NativeSeedlingResults.csv',
 #           row.names = F)
@@ -132,7 +138,7 @@ ggsave('figures/GuineaSeedling_InvasionSoilTreatment.tiff', device = 'tiff',
 
 #--Height
 # Invasion
-height.invasion <- ggplot(time.data, aes(x = invasion,
+height.invasion <- ggplot(time.data.week3, aes(x = invasion,
                           y = height)) +
   geom_boxplot() +
   ylab('Height (cm)') +
@@ -149,8 +155,29 @@ ggsave('figures/GuineaHeight_invasion.tiff', device = 'tiff',
        plot = height.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
 
 # soil treatment
-height.soil <- ggplot(time.data, aes(x = soil.treatment,
+height.soil <- ggplot(time.data.week3, aes(x = invasion,
                           y = height)) +
+  geom_boxplot() +
+  facet_grid(. ~ soil.treatment) +
+  ylab('Seedling count') +
+  xlab('') +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
+  theme(axis.text = element_text(color = "black"))
+  
+ggsave('figures/GuineaHeight_InvasionSoilTreatment.tiff', device = 'tiff',
+       plot = height.soil, width = 10, height = 10, units = 'cm', dpi = 300)
+
+# growth over time
+time.data %>%
+  group_by(week, invasion) %>%
+  summarise(mean.height = mean(height),
+            sd.height = sd(height)) -> summary.height
+height.soil <- ggplot(time.data, aes(x = week,
+                          y = height,
+                          color = invasion)) +
   geom_boxplot() +
   ylab('Seedling count') +
   xlab('') +
@@ -160,5 +187,5 @@ height.soil <- ggplot(time.data, aes(x = soil.treatment,
         axis.line = element_line(colour = "black")) +
   theme(axis.text = element_text(color = "black"))
   
-ggsave('figures/GuineaHeight_invasion.tiff', device = 'tiff',
+ggsave('figures/GuineaHeight_InvasionTime.tiff', device = 'tiff',
        plot = height.soil, width = 10, height = 10, units = 'cm', dpi = 300)
