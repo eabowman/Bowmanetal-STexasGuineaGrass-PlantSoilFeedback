@@ -1,19 +1,19 @@
 sample,autoclave.time,block,invasion,note,pH,EC,Nitrate,P,K,Mg,S,Na,Ca,Sand (%),Silt (%),Clay (%),textural class
-ESI-0,0,el.salto,invaded,Samples also sent in for texture along with nutrients,6.8,50,1,2,167,72,1,4,653,94,4,2,Sand
-ESI-60,60,el.salto,invaded,Samples sent in just for nutrients,6.9,110,3,4,167,74,3,7,631,NA,NA,NA,NA
-ESI-120,120,el.salto,invaded,Samples sent in just for nutrients,7.09,105,3,5,154,69,3,6,607,NA,NA,NA,NA
-ESUI-0,0,el.salto,uninvaded,Samples also sent in for texture along with nutrients,6.6,62,0,1,157,62,1,3,595,90,6,4,Sand
-ESUI-60,60,el.salto,uninvaded,Samples sent in just for nutrients,6.8,42,0,3,157,67,3,7,606,NA,NA,NA,NA
-ESUI-120,120,el.salto,uninvaded,Samples sent in just for nutrients,6.9,123,1,4,149,66,4,10,598,NA,NA,NA,NA
-NCI-0,0,north.cuantes,invaded,Samples also sent in for texture along with nutrients,6.2,65,6,1,124,55,1,3,357,94,6,0,Sand
-NCI-60,60,north.cuantes,invaded,Samples sent in just for nutrients,6.2,64,6,3,133,59,2,6,364,NA,NA,NA,NA
-NCI-120,120,north.cuantes,invaded,Samples sent in just for nutrients,6.2,105,5,5,128,61,3,7,370,NA,NA,NA,NA
-NCUI-0,0,north.cuantes,uninvaded,Samples also sent in for texture along with nutrients,5.7,34,0,2,88,52,1,4,258,92,6,2,Sand
-NCUI-60,60,north.cuantes,uninvaded,Samples sent in just for nutrients,5.6,57,1,5,90,55,3,10,254,NA,NA,NA,NA
-NCUI-120,120,north.cuantes,uninvaded,Samples sent in just for nutrients,5.6,101,1,6,85,54,3,7,250,NA,NA,NA,NA
-FI-0,0,finner,invaded,Samples also sent in for texture along with nutrients,6.1,59,4,6,121,75,2,6,542,92,6,2,Sand
-FI-60,60,finner,invaded,Samples sent in just for nutrients,6.4,123,4,10,129,79,6,10,560,NA,NA,NA,NA
-FI-120,120,finner,invaded,Samples sent in just for nutrients,6.4,184,4,15,154,91,13,32,609,NA,NA,NA,NA
-FUI-0,0,finner,uninvaded,Samples also sent in for texture along with nutrients,5.8,51,2,3,101,53,1,4,354,90,6,4,Sand
-FUI-60,60,finner,uninvaded,Samples sent in just for nutrients,5.9,81,3,4,98,52,2,8,328,NA,NA,NA,NA
-FUI-120,120,finner,uninvaded,Samples sent in just for nutrients,6,53,0,8,123,64,8,30,374,NA,NA,NA,NA
+ESI-0,0,el.salto,Invaded,Samples also sent in for texture along with nutrients,6.8,50,1,2,167,72,1,4,653,94,4,2,Sand
+ESI-60,60,el.salto,Invaded,Samples sent in just for nutrients,6.9,110,3,4,167,74,3,7,631,NA,NA,NA,NA
+ESI-120,120,el.salto,Invaded,Samples sent in just for nutrients,7.09,105,3,5,154,69,3,6,607,NA,NA,NA,NA
+ESUI-0,0,el.salto,Uninvaded,Samples also sent in for texture along with nutrients,6.6,62,0,1,157,62,1,3,595,90,6,4,Sand
+ESUI-60,60,el.salto,Uninvaded,Samples sent in just for nutrients,6.8,42,0,3,157,67,3,7,606,NA,NA,NA,NA
+ESUI-120,120,el.salto,Uninvaded,Samples sent in just for nutrients,6.9,123,1,4,149,66,4,10,598,NA,NA,NA,NA
+NCI-0,0,north.cuantes,Invaded,Samples also sent in for texture along with nutrients,6.2,65,6,1,124,55,1,3,357,94,6,0,Sand
+NCI-60,60,north.cuantes,Invaded,Samples sent in just for nutrients,6.2,64,6,3,133,59,2,6,364,NA,NA,NA,NA
+NCI-120,120,north.cuantes,Invaded,Samples sent in just for nutrients,6.2,105,5,5,128,61,3,7,370,NA,NA,NA,NA
+NCUI-0,0,north.cuantes,Uninvaded,Samples also sent in for texture along with nutrients,5.7,34,0,2,88,52,1,4,258,92,6,2,Sand
+NCUI-60,60,north.cuantes,Uninvaded,Samples sent in just for nutrients,5.6,57,1,5,90,55,3,10,254,NA,NA,NA,NA
+NCUI-120,120,north.cuantes,Uninvaded,Samples sent in just for nutrients,5.6,101,1,6,85,54,3,7,250,NA,NA,NA,NA
+FI-0,0,finner,Invaded,Samples also sent in for texture along with nutrients,6.1,59,4,6,121,75,2,6,542,92,6,2,Sand
+FI-60,60,finner,Invaded,Samples sent in just for nutrients,6.4,123,4,10,129,79,6,10,560,NA,NA,NA,NA
+FI-120,120,finner,Invaded,Samples sent in just for nutrients,6.4,184,4,15,154,91,13,32,609,NA,NA,NA,NA
+FUI-0,0,finner,Uninvaded,Samples also sent in for texture along with nutrients,5.8,51,2,3,101,53,1,4,354,90,6,4,Sand
+FUI-60,60,finner,Uninvaded,Samples sent in just for nutrients,5.9,81,3,4,98,52,2,8,328,NA,NA,NA,NA
+FUI-120,120,finner,Uninvaded,Samples sent in just for nutrients,6,53,0,8,123,64,8,30,374,NA,NA,NA,NA

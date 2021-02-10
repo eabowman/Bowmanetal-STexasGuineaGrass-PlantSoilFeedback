@@ -1,73 +1,73 @@
-sample,replicate,pasture,invasion,soil.treatment,time.point,CFU.bacterial,abundance.bacterial.cfupermL,CFU.fungal,abundance.fungal.cfupermL,spec.richness.bacterial,spec.richness.fungal,notes
-ESI.MS1A,1,el.salto,Invaded,MSS,8/28/20,0,0,1,10000,,,"plated Oct. 16-17, 2020; alternative sample name: LHI"
-ESI.MS2A,2,el.salto,Invaded,MSS,8/28/20,0,0,1,10000,,,"plated Oct. 16-17, 2020; alternative sample name: LHI"
-ESI.IS1A,1,el.salto,Invaded,ISS,8/28/20,0,0,1,10000,,,"plated Oct. 16-17, 2020; alternative sample name: LHI"
-ESI.IS2A,2,el.salto,Invaded,ISS,8/28/20,3,30000,8,80000,,,"plated Oct. 16-17, 2020; alternative sample name: LHI"
-NCI.MS1A,1,north.cuates,Invaded,MSS,8/28/20,0,0,4,40000,,,"plated Oct. 16-17, 2020; alternative sample name: LCI"
-NCI.MS4A,4,north.cuates,Invaded,MSS,8/28/20,0,0,9,90000,,,"plated Oct. 16-17, 2020; alternative sample name: LCI"
-NCI.IS1A,1,north.cuates,Invaded,ISS,8/28/20,3,30000,0,0,,,"plated Oct. 16-17, 2020; alternative sample name: LCI"
-NCI.IS4A,4,north.cuates,Invaded,ISS,8/28/20,4,40000,12,120000,,,"plated Oct. 16-17, 2020; alternative sample name: LCI"
-FI.MS1A,1,finner,Invaded,MSS,8/28/20,2,20000,6,60000,,,"plated Oct. 16-17, 2020; alternative sample name: FI"
-FI.MS2A,2,finner,Invaded,MSS,8/28/20,0,0,13,130000,,,"plated Oct. 16-17, 2020; alternative sample name: FI"
-FI.IS1A,1,finner,Invaded,ISS,8/28/20,0,0,11,110000,,,"plated Oct. 16-17, 2020; alternative sample name: FI"
-FI.IS2A,2,finner,Invaded,ISS,8/28/20,0,0,42,420000,,,"plated Oct. 16-17, 2020; alternative sample name: FI"
-ESUI.MS1A,1,el.salto,Uninvaded,MSS,8/28/20,0,0,0,0,,,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
-ESUI.MS2A,2,el.salto,Uninvaded,MSS,8/28/20,0,0,0,0,,,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
-ESUI.IS1A,1,el.salto,Uninvaded,ISS,8/28/20,2,20000,1,10000,,,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
-ESUI.IS2A,2,el.salto,Uninvaded,ISS,8/28/20,1,10000,0,0,,,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
-NCUI.MS1A,1,north.cuates,Uninvaded,MSS,8/28/20,0,0,11,110000,,,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
-NCUI.MS2A,2,north.cuates,Uninvaded,MSS,8/28/20,0,0,58,580000,,,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
-NCUI.IS1A,1,north.cuates,Uninvaded,ISS,8/28/20,0,0,6,60000,,,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
-NCUI.IS2A,2,north.cuates,Uninvaded,ISS,8/28/20,0,0,6,60000,,,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
-FUI.MS1A,1,finner,Uninvaded,MSS,8/28/20,0,0,6,60000,,,"plated Oct. 16-17, 2020; alternative sample name: FUI"
-FUI.MS2A,2,finner,Uninvaded,MSS,8/28/20,0,0,2,20000,,,"plated Oct. 16-17, 2020; alternative sample name: FUI"
-FI.UIS1A,1,finner,Uninvaded,ISS,8/28/20,0,0,8,80000,,,"plated Oct. 16-17, 2020; alternative sample name: FUI"
-FI.UIS2A,2,finner,Uninvaded,ISS,8/28/20,1,10000,3,30000,,,"plated Oct. 16-17, 2020; alternative sample name: FUI"
-ESI.MS1B,1,el.salto,Invaded,MSS,10/13/20,1,10000,19,190000,,,"plated Oct.21-22, 2020; alternative sample name: LHI"
-ESI.MS2B,2,el.salto,Invaded,MSS,10/13/20,2,20000,4,40000,,,"plated Oct.21-22, 2020; alternative sample name: LHI"
-ESI.IS1B,1,el.salto,Invaded,ISS,10/13/20,1,10000,9,90000,,,"plated Oct.21-22, 2020; alternative sample name: LHI"
-ESI.IS2B,2,el.salto,Invaded,ISS,10/13/20,1,10000,6,60000,,,"plated Oct.21-22, 2020; alternative sample name: LHI"
-NCI.MS1B,1,north.cuates,Invaded,MSS,10/13/20,1,10000,5,50000,,,"plated Oct.21-22, 2020; alternative sample name: LCI"
-NCI.MS4B,4,north.cuates,Invaded,MSS,10/13/20,6,60000,7,70000,,,"plated Oct.21-22, 2020; alternative sample name: LCI"
-NCI.IS1B,1,north.cuates,Invaded,ISS,10/13/20,3,30000,25,250000,,,"plated Oct.21-22, 2020; alternative sample name: LCI"
-NCI.IS4B,4,north.cuates,Invaded,ISS,10/13/20,0,0,37,370000,,,"plated Oct.21-22, 2020; alternative sample name: LCI"
-FI.MS1B,1,finner,Invaded,MSS,10/13/20,4,40000,9,90000,,,"plated Oct.21-22, 2020; alternative sample name: FI"
-FI.MS2B,2,finner,Invaded,MSS,10/13/20,2,20000,6,60000,,,"plated Oct.21-22, 2020; alternative sample name: FI"
-FI.IS1B,1,finner,Invaded,ISS,10/13/20,3,30000,7,70000,,,"plated Oct.21-22, 2020; alternative sample name: FI"
-FI.IS2B,2,finner,Invaded,ISS,10/13/20,2,20000,20,200000,,,"plated Oct.21-22, 2020; alternative sample name: FI"
-ESUI.MS1B,1,el.salto,Uninvaded,MSS,10/13/20,5,50000,15,150000,,,"plated Oct.21-22, 2020; alternative sample name: LHUI"
-ESUI.MS2B,2,el.salto,Uninvaded,MSS,10/13/20,3,30000,13,130000,,,"plated Oct.21-22, 2020; alternative sample name: LHUI"
-ESUI.IS1B,1,el.salto,Uninvaded,ISS,10/13/20,6,60000,5,50000,,,"plated Oct.21-22, 2020; alternative sample name: LHUI"
-ESUI.IS2B,2,el.salto,Uninvaded,ISS,10/13/20,3,30000,2,20000,,,"plated Oct.21-22, 2020; alternative sample name: LHUI"
-NCUI.MS1B,1,north.cuates,Uninvaded,MSS,10/13/20,2,20000,12,120000,,,"plated Oct.21-22, 2020; alternative sample name: LCUI"
-NCUI.MS2B,2,north.cuates,Uninvaded,MSS,10/13/20,,,,,,,"plated Oct.28, 2020; alternative sample name: LCUI"
-NCUI.IS1B,1,north.cuates,Uninvaded,ISS,10/13/20,4,40000,11,110000,,,"plated Oct.21-22, 2020; alternative sample name: LCUI"
-NCUI.IS2B,2,north.cuates,Uninvaded,ISS,10/13/20,,,,,,,"plated Oct.28, 2020; alternative sample name: LCUI"
-FUI.MS1B,1,finner,Uninvaded,MSS,10/13/20,1,10000,2,20000,,,"plated Oct.21-22, 2020; alternative sample name: FUI"
-FUI.MS2B,2,finner,Uninvaded,MSS,10/13/20,6,60000,4,40000,,,"plated Oct.21-22, 2020; alternative sample name: FUI"
-FUI.IS1B,1,finner,Uninvaded,ISS,10/13/20,3,30000,9,90000,,,"plated Oct.21-22, 2020; alternative sample name: FUI"
-FUI.IS2B,2,finner,Uninvaded,ISS,10/13/20,2,20000,4,40000,,,"plated Oct.21-22, 2020; alternative sample name: FUI"
-ESI.MS1C,1,el.salto,Invaded,MSS,12/4/20,,,,,,,alternative sample name: LHI
-ESI.MS2C,2,el.salto,Invaded,MSS,12/4/20,,,,,,,alternative sample name: LHI
-ESI.IS1C,1,el.salto,Invaded,ISS,12/4/20,,,,,,,alternative sample name: LHI
-ESI.IS2C,2,el.salto,Invaded,ISS,12/4/20,,,,,,,alternative sample name: LHI
-NCI.MS1C,1,north.cuates,Invaded,MSS,12/4/20,,,,,,,alternative sample name: LCI
-NCI.MS4C,4,north.cuates,Invaded,MSS,12/4/20,,,,,,,alternative sample name: LCI
-NCI.IS1C,1,north.cuates,Invaded,ISS,12/4/20,,,,,,,alternative sample name: LCI
-NCI.IS4C,4,north.cuates,Invaded,ISS,12/4/20,,,,,,,alternative sample name: LCI
-FI.MS1C,1,finner,Invaded,MSS,12/4/20,,,,,,,alternative sample name: FI
-FI.MS2C,2,finner,Invaded,MSS,12/4/20,,,,,,,alternative sample name: FI
-FI.IS1C,1,finner,Invaded,ISS,12/4/20,,,,,,,alternative sample name: FI
-FI.IS2C,2,finner,Invaded,ISS,12/4/20,,,,,,,alternative sample name: FI
-ESUI.MS1C,1,el.salto,Uninvaded,MSS,12/4/20,,,,,,,alternative sample name: LHUI
-ESUI.MS2C,2,el.salto,Uninvaded,MSS,12/4/20,,,,,,,alternative sample name: LHUI
-ESUI.IS1C,1,el.salto,Uninvaded,ISS,12/4/20,,,,,,,alternative sample name: LHUI
-ESUI.IS2C,2,el.salto,Uninvaded,ISS,12/4/20,,,,,,,alternative sample name: LHUI
-NCUI.MS1C,1,north.cuates,Uninvaded,MSS,12/4/20,,,,,,,alternative sample name: LCUI
-NCUI.MS2C,2,north.cuates,Uninvaded,MSS,12/4/20,,,,,,,alternative sample name: LCUI
-NCUI.IS1C,1,north.cuates,Uninvaded,ISS,12/4/20,,,,,,,alternative sample name: LCUI
-NCUI.IS2C,2,north.cuates,Uninvaded,ISS,12/4/20,,,,,,,alternative sample name: LCUI
-FUI.MS1C,1,finner,Uninvaded,MSS,12/4/20,,,,,,,alternative sample name: FUI
-FUI.MS2C,2,finner,Uninvaded,MSS,12/4/20,,,,,,,alternative sample name: FUI
-FI.UIS1C,1,finner,Uninvaded,ISS,12/4/20,,,,,,,alternative sample name: FUI
-FI.UIS2C,2,finner,Uninvaded,ISS,12/4/20,,,,,,,alternative sample name: FUI
+sample,replicate,pasture,invasion,soil.treatment,time.point,CFU.bacterial,abundance.bacterial,CFU.fungal,abundance.fungal,spec.richness.bacterial,spec.richness.fungal,notes
+ESI.MS1A,1,el.salto,Invaded,MSS,8/28/2020,0,0,1,10000,0,1,"plated Oct. 16-17, 2020; alternative sample name: LHI"
+ESI.MS2A,2,el.salto,Invaded,MSS,8/28/2020,1,10000,0,0,1,0,"plated Oct. 16-17, 2020; alternative sample name: LHI"
+ESI.IS1A,1,el.salto,Invaded,ISS,8/28/2020,0,0,1,10000,0,1,"plated Oct. 16-17, 2020; alternative sample name: LHI"
+ESI.IS2A,2,el.salto,Invaded,ISS,8/28/2020,3,30000,8,80000,1,7,"plated Oct. 16-17, 2020; alternative sample name: LHI"
+NCI.MS1A,1,north.cuates,Invaded,MSS,8/28/2020,0,0,4,40000,0,3,"plated Oct. 16-17, 2020; alternative sample name: LCI"
+NCI.MS4A,4,north.cuates,Invaded,MSS,8/28/2020,0,0,9,90000,0,5,"plated Oct. 16-17, 2020; alternative sample name: LCI"
+NCI.IS1A,1,north.cuates,Invaded,ISS,8/28/2020,2,20000,1,10000,2,1,"plated Oct. 16-17, 2020; alternative sample name: LCI"
+NCI.IS4A,4,north.cuates,Invaded,ISS,8/28/2020,4,40000,12,120000,2,3,"plated Oct. 16-17, 2020; alternative sample name: LCI"
+FI.MS1A,1,finner,Invaded,MSS,8/28/2020,2,20000,6,60000,1,4,"plated Oct. 16-17, 2020; alternative sample name: FI"
+FI.MS2A,2,finner,Invaded,MSS,8/28/2020,0,0,13,130000,0,11,"plated Oct. 16-17, 2020; alternative sample name: FI"
+FI.IS1A,1,finner,Invaded,ISS,8/28/2020,0,0,11,110000,0,9,"plated Oct. 16-17, 2020; alternative sample name: FI"
+FI.IS2A,2,finner,Invaded,ISS,8/28/2020,1,10000,42,420000,1,13,"plated Oct. 16-17, 2020; alternative sample name: FI"
+ESUI.MS1A,1,el.salto,Uninvaded,MSS,8/28/2020,0,0,0,0,0,0,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
+ESUI.MS2A,2,el.salto,Uninvaded,MSS,8/28/2020,0,0,0,0,0,0,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
+ESUI.IS1A,1,el.salto,Uninvaded,ISS,8/28/2020,1,10000,2,20000,1,2,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
+ESUI.IS2A,2,el.salto,Uninvaded,ISS,8/28/2020,1,10000,0,0,1,0,"plated Oct. 16-17, 2020; alternative sample name: LHUI"
+NCUI.MS1A,1,north.cuates,Uninvaded,MSS,8/28/2020,0,0,11,110000,0,4,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
+NCUI.MS2A,2,north.cuates,Uninvaded,MSS,8/28/2020,0,0,58,580000,0,5,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
+NCUI.IS1A,1,north.cuates,Uninvaded,ISS,8/28/2020,0,0,6,60000,0,1,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
+NCUI.IS2A,2,north.cuates,Uninvaded,ISS,8/28/2020,0,0,6,60000,0,2,"plated Oct. 16-17, 2020; alternative sample name: LCUI"
+FUI.MS1A,1,finner,Uninvaded,MSS,8/28/2020,1,10000,6,60000,1,6,"plated Oct. 16-17, 2020; alternative sample name: FUI"
+FUI.MS2A,2,finner,Uninvaded,MSS,8/28/2020,0,0,2,20000,0,2,"plated Oct. 16-17, 2020; alternative sample name: FUI"
+FUI.IS1A,1,finner,Uninvaded,ISS,8/28/2020,0,0,8,80000,0,7,"plated Oct. 16-17, 2020; alternative sample name: FUI"
+FUI.IS2A,2,finner,Uninvaded,ISS,8/28/2020,0,0,4,40000,0,4,"plated Oct. 16-17, 2020; alternative sample name: FUI"
+ESI.MS1B,1,el.salto,Invaded,MSS,10/13/2020,1,10000,19,190000,1,6,"plated Oct.21-22, 2020; alternative sample name: LHI"
+ESI.MS2B,2,el.salto,Invaded,MSS,10/13/2020,7,70000,7,70000,1,5,"* check bacterial CFU count* plated Oct.21-22, 2020; alternative sample name: LHI"
+ESI.IS1B,1,el.salto,Invaded,ISS,10/13/2020,7,70000,9,90000,3,8,"plated Oct.21-22, 2020; alternative sample name: LHI"
+ESI.IS2B,2,el.salto,Invaded,ISS,10/13/2020,0,0,7,70000,0,6,"plated Oct.21-22, 2020; alternative sample name: LHI"
+NCI.MS1B,1,north.cuates,Invaded,MSS,10/13/2020,1,10000,6,60000,1,6,"plated Oct.21-22, 2020; alternative sample name: LCI"
+NCI.MS4B,4,north.cuates,Invaded,MSS,10/13/2020,3,30000,>100,>1000000,3,11,"* check fungal CFU count* plated Oct.21-22, 2020; alternative sample name: LCI"
+NCI.IS1B,1,north.cuates,Invaded,ISS,10/13/2020,1,10000,>100,>1000000,1,22,"plated Oct.21-22, 2020; alternative sample name: LCI"
+NCI.IS4B,4,north.cuates,Invaded,ISS,10/13/2020,2,20000,>100,>1000000,2,11,"plated Oct.21-22, 2020; alternative sample name: LCI"
+FI.MS1B,1,finner,Invaded,MSS,10/13/2020,2,20000,12,120000,1,9,"plated Oct.21-22, 2020; alternative sample name: FI"
+FI.MS2B,2,finner,Invaded,MSS,10/13/2020,3,30000,8,80000,3,8,"plated Oct.21-22, 2020; alternative sample name: FI"
+FI.IS1B,1,finner,Invaded,ISS,10/13/2020,3,30000,8,80000,3,7,"plated Oct.21-22, 2020; alternative sample name: FI"
+FI.IS2B,2,finner,Invaded,ISS,10/13/2020,22,220000,>50,>500000,3,23,"*check all of the measurements* plated Oct.21-22, 2020; alternative sample name: FI"
+ESUI.MS1B,1,el.salto,Uninvaded,MSS,10/13/2020,1,10000,>100,>1000000,1,13,"* check fungal CFU count* plated Oct.21-22, 2020; alternative sample name: LHUI"
+ESUI.MS2B,2,el.salto,Uninvaded,MSS,10/13/2020,1,10000,25,250000,1,15,"plated Oct.21-22, 2020; alternative sample name: LHUI"
+ESUI.IS1B,1,el.salto,Uninvaded,ISS,10/13/2020,8,80000,8,80000,4,8,"plated Oct.21-22, 2020; alternative sample name: LHUI"
+ESUI.IS2B,2,el.salto,Uninvaded,ISS,10/13/2020,2,20000,6,60000,2,5,"plated Oct.21-22, 2020; alternative sample name: LHUI"
+NCUI.MS1B,1,north.cuates,Uninvaded,MSS,10/13/2020,3,30000,12,120000,3,9,"plated Oct.21-22, 2020; alternative sample name: LCUI"
+NCUI.MS2B,2,north.cuates,Uninvaded,MSS,10/13/2020,15,150000,35,350000,3,16,"plated Oct.28, 2020; alternative sample name: LCUI"
+NCUI.IS1B,1,north.cuates,Uninvaded,ISS,10/13/2020,2,20000,>100,>1000000,2,13,"* check my work on fungal CFU count* plated Oct.21-22, 2020; alternative sample name: LCUI"
+NCUI.IS2B,2,north.cuates,Uninvaded,ISS,10/13/2020,>50,>500000,8,80000,2,2,"plated Oct.28, 2020; alternative sample name: LCUI"
+FUI.MS1B,1,finner,Uninvaded,MSS,10/13/2020,2,20000,>100,>1000000,2,3,"* check fungal CFU count* plated Oct.21-22, 2020; alternative sample name: FUI"
+FUI.MS2B,2,finner,Uninvaded,MSS,10/13/2020,4,40000,12,120000,2,9,"plated Oct.21-22, 2020; alternative sample name: FUI"
+FUI.IS1B,1,finner,Uninvaded,ISS,10/13/2020,4,40000,10,100000,3,8,"plated Oct.21-22, 2020; alternative sample name: FUI"
+FUI.IS2B,2,finner,Uninvaded,ISS,10/13/2020,8,80000,>75,>750000,2,7,"* check fungal CFU count* plated Oct.21-22, 2020; alternative sample name: FUI"
+ESI.MS1C,1,el.salto,Invaded,MSS,12/4/2020,>100,>1000000,4,40000,3,4,alternative sample name: LHI
+ESI.MS2C,2,el.salto,Invaded,MSS,12/4/2020,>100,>1000000,2,20000,3,2,alternative sample name: LHI
+ESI.IS1C,1,el.salto,Invaded,ISS,12/4/2020,38,380000,5,50000,3,4,alternative sample name: LHI
+ESI.IS2C,2,el.salto,Invaded,ISS,12/4/2020,22,220000,14,140000,2,9,alternative sample name: LHI
+NCI.MS1C,1,north.cuates,Invaded,MSS,12/4/2020,0,0,>50,>500000,0,18,alternative sample name: LCI
+NCI.MS4C,4,north.cuates,Invaded,MSS,12/4/2020,31,310000,3,30000,3,3,alternative sample name: LCI
+NCI.IS1C,1,north.cuates,Invaded,ISS,12/4/2020,20,200000,>100,>1000000,1,13,alternative sample name: LCI
+NCI.IS4C,4,north.cuates,Invaded,ISS,12/4/2020,>75,>750000,16,160000,6,14,alternative sample name: LCI
+FI.MS1C,1,finner,Invaded,MSS,12/4/2020,5,50000,9,90000,2,6,alternative sample name: FI
+FI.MS2C,2,finner,Invaded,MSS,12/4/2020,>50,>500000,10,100000,2,6,alternative sample name: FI
+FI.IS1C,1,finner,Invaded,ISS,12/4/2020,12,120000,15,150000,1,7,alternative sample name: FI
+FI.IS2C,2,finner,Invaded,ISS,12/4/2020,7,70000,13,130000,4,8,alternative sample name: FI
+ESUI.MS1C,1,el.salto,Uninvaded,MSS,12/4/2020,0,0,15,150000,0,11,alternative sample name: LHUI
+ESUI.MS2C,2,el.salto,Uninvaded,MSS,12/4/2020,0,0,12,120000,0,9,alternative sample name: LHUI
+ESUI.IS1C,1,el.salto,Uninvaded,ISS,12/4/2020,0,0,8,80000,0,7,alternative sample name: LHUI
+ESUI.IS2C,2,el.salto,Uninvaded,ISS,12/4/2020,0,0,8,80000,0,8,alternative sample name: LHUI
+NCUI.MS1C,1,north.cuates,Uninvaded,MSS,12/4/2020,2,20000,14,140000,2,12,alternative sample name: LCUI
+NCUI.MS2C,2,north.cuates,Uninvaded,MSS,12/4/2020,2,20000,11,110000,2,10,alternative sample name: LCUI
+NCUI.IS1C,1,north.cuates,Uninvaded,ISS,12/4/2020,2,20000,9,90000,2,8,alternative sample name: LCUI
+NCUI.IS2C,2,north.cuates,Uninvaded,ISS,12/4/2020,1,10000,>50,>500000,1,15,alternative sample name: LCUI
+FUI.MS1C,1,finner,Uninvaded,MSS,12/4/2020,1,10000,9,90000,1,9,alternative sample name: FUI
+FUI.MS2C,2,finner,Uninvaded,MSS,12/4/2020,1,10000,6,60000,1,6,alternative sample name: FUI
+FUI.IS1C,1,finner,Uninvaded,ISS,12/4/2020,3,30000,46,460000,2,12,alternative sample name: FUI
+FUI.IS2C,2,finner,Uninvaded,ISS,12/4/2020,1,10000,9,90000,1,8,alternative sample name: FUI

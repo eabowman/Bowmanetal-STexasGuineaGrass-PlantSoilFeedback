@@ -211,3 +211,21 @@ graph.Na <- ggplot(soil.data, aes(x = autoclave.time,
 ggsave('figures/Na_AutoclaveTime.tiff', device = 'tiff', plot = graph.Na,
        width = 6, height = 6, units = 'cm', dpi = 300)
 
+
+
+lm.pH <- glm(pH ~ block * invasion, data = soil.data)
+anova.pH <- anova(lm.pH)
+
+graph.Na <- ggplot(soil.data, aes(x = autoclave.time,
+                                     y = Na)) +
+  geom_boxplot() +
+  ylab('Sodium (ppm)') +
+  xlab('Autoclave length (min)') +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
+  theme(axis.text = element_text(color = "black"))
+  
+ggsave('figures/Na_AutoclaveTime.tiff', device = 'tiff', plot = graph.Na,
+       width = 6, height = 6, units = 'cm', dpi = 300)

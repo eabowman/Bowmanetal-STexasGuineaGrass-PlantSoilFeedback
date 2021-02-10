@@ -4,188 +4,132 @@
 
 library(tidyverse)
 library(nlme)
+library(vegan)
 
-seedling.data <- read.csv('data/data.MSS.ISS.csv', as.is = T)
+plant.data <- read.csv('data/data.MSS.ISS.csv', as.is = T)
 
 # --------------------------------------------------------------------------#
-#--Data manipulation and evaluation of normality----
+#--<< Data manipulation and evaluation of normality >> ----
 # --------------------------------------------------------------------------#
 
 #--Native seed bank-----
 # create new column merging the 9.15 and 9.14 seedling data
-seedling.data$seedlings.9.14.20 <- replace_na(seedling.data$seedlings.9.14.20, 0)
-seedling.data$seedlings.9.15.20 <- replace_na(seedling.data$seedlings.9.15.20, 0)
+plant.data$seedlings.9.14.20 <- replace_na(plant.data$seedlings.9.14.20, 0)
+plant.data$seedlings.9.15.20 <- replace_na(plant.data$seedlings.9.15.20, 0)
 
-seedling.data %>%
+plant.data %>%
   mutate(seedling.total = seedlings.9.14.20 + seedlings.9.15.20,
-         log.seedling.total = log(seedling.total)) -> seedling.data
+         log.seedling.total = log(seedling.total)) %>%
+    select(-seedlings.9.8.20,-seedlings.9.10.20, # remove extra columns
+           -seedlings.9.14.20,-seedlings.9.15.20) -> plant.data
 # log evaluation based on assessment indicating data non-normal
 # to see these analyses look at the R file 'NativeSeedBank.R'
 
 #--Guinea grass seed germination----
-seedling.data %>%
+plant.data %>%
   mutate(guinea.grass.seedling.total = guinea.grass.seedling.9.28.20 +
     guinea.grass.seedling.10.12.20 + guinea.grass.seedling.10.23.20,
     log.guinea.grass.seedling.total = log(guinea.grass.seedling.total)) %>%
-  filter(guinea.grass.seedling.total != 0) -> seedling.data
+  #filter(guinea.grass.seedling.total != 0) %>%
+  select(-guinea.grass.seedling.9.28.20,-guinea.grass.seedling.10.12.20,
+  -guinea.grass.seedling.10.23.20) -> plant.data.rev
+
+# seedling germination as a function of time
+plant.data.time <- plant.data[c('sample','pasture','invasion',
+                                      'soil.treatment',
+                                      'guinea.grass.seedling.9.28.20',
+                                      'guinea.grass.seedling.10.12.20',
+                                      'guinea.grass.seedling.10.23.20')]
+plant.data.time %>%
+  gather(key = time.pt, value = seedling.count,
+         -sample, -pasture, -invasion, -soil.treatment) -> plant.data.time
 
 #--Check normality of data
-hist(seedling.data$guinea.grass.seedling.total)
-hist(seedling.data$log.guinea.grass.seedling.total)
-shapiro.test(seedling.data$log.guinea.grass.seedling.total)
+hist(plant.data.rev$guinea.grass.seedling.total)
+hist(plant.data.rev$log.guinea.grass.seedling.total)
+shapiro.test(plant.data.rev$log.guinea.grass.seedling.total)
 
 # not normal, use non-parametric tests
 
 #--Mean and sd
-seedling.data %>%
-  group_by(invasion, soil.treatment) %>%
-  summarise(mean.nativegerm = mean(seedling.total),
-            sd.nativegerm = sd(seedling.total),
-            mean.guineagerm = mean(guinea.grass.seedling.total),
-            sd.guineagerm = sd(guinea.grass.seedling.total)) -> germ.summary
+plant.data %>%
+  filter(!is.na(guinea.grass.seedling.total)) %>%
+  group_by(invasion) %>%
+  summarise(mean.guineagerm = mean(guinea.grass.seedling.total),
+            sd.guineagerm = sd(guinea.grass.seedling.total),
+            mean.week1 = mean(guinea.grass.seedling.week.1),
+            sd.week1 = sd(guinea.grass.seedling.week.1)) -> germ.summary
 
 # write.csv(germ.summary, 'results/GerminationSummaryData.csv',
 #           row.names = F)
 
-#--Guinea grass height data----
-#--Transform to make the height columns into one keeping invaion
+#--Guinea grass height data and growth rate----
+#--Transform to make the height columns into one keeping invasion
 # and soil treatment columns
-seedling.data %>%
-  select(invasion, soil.treatment,
-         guinea.grass.height.10.29.20,
-         guinea.grass.height.11.6.20,
-         guinea.grass.height.11.13.20) %>%
-  gather(key = week, value = height, -invasion, -soil.treatment) %>%
-  mutate(week = replace(week, week == 'guinea.grass.height.10.29.20',
+plant.data %>%
+  select(sample,replicate,pasture,invasion, soil.treatment,
+         guinea.grass.height.10.29.20.cm,
+         guinea.grass.height.11.6.20.cm,
+         guinea.grass.height.11.13.20.cm,
+         guinea.grass.height.11.20.20.cm,
+         guinea.grass.height.11.27.20.cm,
+         guinea.grass.height.12.4.20.cm) %>%
+  gather(key = week, value = height, -invasion, -soil.treatment, 
+         -sample, -replicate, -pasture) %>%
+  mutate(week = replace(week, week == 'guinea.grass.height.10.29.20.cm',
                         'week1'),
-         week = replace(week, week == 'guinea.grass.height.11.6.20',
+         week = replace(week, week == 'guinea.grass.height.11.6.20.cm',
                         'week2'),
-         week = replace(week, week == 'guinea.grass.height.11.13.20',
+         week = replace(week, week == 'guinea.grass.height.11.13.20.cm',
                         'week3'),
+         week = replace(week, week == 'guinea.grass.height.11.20.20.cm',
+                        'week4'),
+         week = replace(week, week == 'guinea.grass.height.11.27.20.cm',
+                        'week5'),
+         week = replace(week, week == 'guinea.grass.height.12.4.20.cm',
+                        'week6'),
          log.height = log(height)) %>%
   filter(height != 0, !is.na(height)) -> time.data
 
+# Calculate growth rate in the seedling.data 
+plant.data[is.na(plant.data)] <- 0
+plant.data <- mutate(plant.data,
+       growth.rate.overall = guinea.grass.height.12.4.20.cm/97,
+       log.growth.rate.overall = log(growth.rate.overall),
+       log.height.cm = log(guinea.grass.height.12.4.20.cm))
+
 #--Check normality of data
-hist(time.data$height)
-shapiro.test(time.data$height) # not normal
-hist(time.data$log.height)
-shapiro.test(time.data$log.height)
+hist(plant.data$guinea.grass.height.12.4.20.cm)
+shapiro.test(plant.data$guinea.grass.height.12.4.20.cm) # not normal
+hist(plant.data$log.height.cm)
+shapiro.test(plant.data$log.height.cm)
 
 # Data non-normal even after transformation, use non-parametric methods
 
-# --------------------------------------------------------------------------#
-#--Guinea grass seedlings and height: GLS function of soil treatment and invasion----
-# --------------------------------------------------------------------------#
+hist(seedling.data$growth.rate.overall)
+shapiro.test(seedling.data$growth.rate.overall)
 
-#--Seedlings
-gls.seedling <- gls(guinea.grass.seedling.total ~ invasion * soil.treatment,
-                  data = seedling.data)
-gls.summary <- summary(gls.seedling) 
-# invasion and invasion * soil treatment almost sig
+# Data non-normal even after transformation, use non-parametric methods
 
-# write.csv(anova.seedling, 'results/NativeSeedlingResults.csv',
-#           row.names = F)
+# Summary of data
+group_by(seedling.data, invasion) %>% 
+  summarise(mean.growth.rate = mean(growth.rate.overall), 
+            sd.growth.rate = sd(growth.rate.overall), 
+            mean.height = mean(guinea.grass.height.12.4.20.cm), 
+            sd.height = sd(guinea.grass.height.12.4.20.cm),
+            week1.gr.mean = mean(guinea.grass.height.10.29.2.cm0),
+            week1.gr.sd = sd(guinea.grass.height.10.29.20.cm),
+            week2.gr.mean = mean(guinea.grass.height.11.6.20.cm),
+            week2.gr.sd = sd(guinea.grass.height.11.6.20.cm),
+            week3.gr.mean = mean(guinea.grass.height.11.13.20.cm),
+            week3.gr.sd = sd(guinea.grass.height.11.13.20.cm),
+            week4.gr.mean = mean(guinea.grass.height.11.20.20.cm),
+            week4.gr.sd = sd(guinea.grass.height.11.20.20.cm),
+            week5.gr.mean = mean(guinea.grass.height.11.27.20.cm),
+            week5.gr.sd = sd(guinea.grass.height.11.27.20.cm)) -> height.summary
 
-#--Height
-# focus on week 3 data
-time.data.week3 <- filter(time.data, week == 'week3')
-gls.height <- gls(log.height ~ invasion * soil.treatment,
-                  data = time.data.week3)
-gls.height <- summary(gls.height) # invasion sig.
+#--Guinea grass root length----
+hist(seedling.data$guinea.grass.root.length)
+shapiro.test(seedling.data$guinea.grass.root.length)
 
-# write.csv(anova.seedling, 'results/NativeSeedlingResults.csv',
-#           row.names = F)
-
-# --------------------------------------------------------------------------#
-#--Guinea grass seedlings and height: Plot as function of soil treatment and invasion----
-# --------------------------------------------------------------------------#
-
-#--Seedlings
-# Invasion
-seedling.invasion <- ggplot(seedling.data, aes(x = invasion,
-                          y = guinea.grass.seedling.total)) +
-  geom_boxplot() +
-  ylab('Seedling count') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black")) +
-  scale_x_discrete(breaks=c('invaded', 'uninvaded'),
-                      labels=c('Invaded','Uninvaded'))
-
-ggsave('figures/GuineaSeedling_invasion.tiff', device = 'tiff',
-       plot = seedling.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
-
-# soil treatment
-seedling.invsoil <- ggplot(seedling.data, aes(x = invasion,
-                          y = guinea.grass.seedling.total)) +
-  geom_boxplot() +
-  facet_grid(. ~ soil.treatment) +
-  ylab('Seedling count') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))  +
-  scale_x_discrete(breaks=c('invaded', 'uninvaded'),
-                      labels=c('Invaded','Uninvaded'))
-  
-ggsave('figures/GuineaSeedling_InvasionSoilTreatment.tiff', device = 'tiff',
-       plot = seedling.invsoil, width = 10, height = 10, units = 'cm', dpi = 300)
-
-#--Height
-# Invasion
-height.invasion <- ggplot(time.data.week3, aes(x = invasion,
-                          y = height)) +
-  geom_boxplot() +
-  ylab('Height (cm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black")) +
-  scale_x_discrete(breaks=c('invaded', 'uninvaded'),
-                      labels=c('Invaded','Uninvaded'))
-
-ggsave('figures/GuineaHeight_invasion.tiff', device = 'tiff',
-       plot = height.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
-
-# soil treatment
-height.soil <- ggplot(time.data.week3, aes(x = invasion,
-                          y = height)) +
-  geom_boxplot() +
-  facet_grid(. ~ soil.treatment) +
-  ylab('Seedling count') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/GuineaHeight_InvasionSoilTreatment.tiff', device = 'tiff',
-       plot = height.soil, width = 10, height = 10, units = 'cm', dpi = 300)
-
-# growth over time
-time.data %>%
-  group_by(week, invasion) %>%
-  summarise(mean.height = mean(height),
-            sd.height = sd(height)) -> summary.height
-height.soil <- ggplot(time.data, aes(x = week,
-                          y = height,
-                          color = invasion)) +
-  geom_boxplot() +
-  ylab('Seedling count') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/GuineaHeight_InvasionTime.tiff', device = 'tiff',
-       plot = height.soil, width = 10, height = 10, units = 'cm', dpi = 300)
+# Data normal
