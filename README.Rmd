@@ -4,18 +4,18 @@ author: "Dr. Elizabeth Bowman"
 date: "6/28/2021"
 output: html_document
 ---
-The folders here contain R scripts and data files for the article "Drivers and implications of distance decay differ for ectomycorrhizal and foliar endophytic fungi across an anciently fragmented landscape" written by Elizabeth A. Bowman and A.Elizabeth Arnold.
+The folders here contain R scripts and data files for the article "Evidence of plant-soil feedback in South Texas grasslands associated with invasive Guinea grass independent of soil inoculation method " written by Elizabeth A. Bowman, Robert M. Plowes, and Lawrence E. Gilbert
 
-A. Elizabeth Arnold is the author for correspondence on this article. 
-Address: 1140 E. South Campus Drive
-Forbes 303
-School of Plant Sciences
-The University of Arizona
-Tucson, AZ 85721 USA. 
-Email: arnold@ag.arizona.edu
+Elizabeth A. Bowman is the author for correspondence on this article. 
+Address: 
+Brackenridge Field Laboratory
+Room 105
+2907 Lake Austin Blvd.
+Austin, TX 78703
+United States
 
 Elizabeth A. Bowman wrote all scripts for data analysis.
-Email: eabowman@austin.utexas.edu
+Email: eabowman@utexas.edu
 
 ------------------------------------------------------------------------------------------
 
@@ -53,61 +53,34 @@ before running.
 source(paste0(script.dir, "LoadLibraries.R"))
 ```
 
-# Distance decay and partial mantel test
+# Plant-soil feedback effect on Guinea grass
+The results from these analyses are shown in Table II. The plots are from
+Fig. I and Fig. IIIA.
 
-The distance decay section only shows the creation of the graphs. All analyses were completed in Jmp using the data used to create graphs. If you would like to use the data as they are graphed, run code up until graph creation to ensure the region of interest (overall, regional, or local) has been filtered.
-
-```{r DistanceDecay}
-source(paste0(script.dir, "DistanceDecay_PartialMantel.R"))
+```{r Effect on Guinea Grass growth}
+source(paste0(script.dir, "AnalysisGuineaGrass.R"))
 ```
 
-# dbMEM and variation partitioning
+# Plant-soil feedback effect on the native seed bank
+The results from these analyses are shown in Table III. The plots are from
+Fig. II, Fig. IIIB, and Fig. IIIC.
 
-We present this method as an alternative to the partial mantel test (see manuscript for explanation). For this analysis, you will also need the function created in varpart2.MEM.R. It is sourced in the dbMEM.R script.
 
-```{r dbMEM}
-source(paste0(script.dir, "dbMEM.R"))
+```{r Effect on growth of the native seedbank}
+source(paste0(script.dir, "AnalysisNativeCommunity.R"))
 ```
 
-# Ectomycorrhizal diversity and community analyses
+# Analysis of soil data
+Effect of autoclaving on soil characteristics and differences in soil 
+characteristics as a function of invasion.
 
-```{r EM div comm}
-source(paste0(script.dir, "EM_ProximitytoLargeContiguousForest.R"))
+Output from AnalysisAutoclaveEffect.R is Supplementary Table SI.
+Output from AnalysisSoil.R is Supplementary Figure SII
+
+```{r Soil data}
+# Autoclaving
+source(paste0(script.dir, "AnalysisAutoclaveEffect.R"))
+
+# Soil as a function of invasion
+source(paste0(script.dir, "AnalysisSoil.R"))
 ```
-
-# EM taxonomic analyses
-
-```{r EM tax}
-source(paste0(script.dir, "EM_TaxonomicStructureAcrossArizona.R"))
-```
-
-# Foliar endophyte (FE) diversity and community analyses: culture-free and culture-based
-
-```{r FE div comm}
-source(paste0(script.dir, "FE_CommunityStructureAcrossArizona.R"))
-```
-
-# FE taxonomic analyses
-
-```{r FE tax}
-source(paste0(script.dir, "FE_TaxonomicStructureAcrossArizona.R"))
-```
-
-# Comparison of culture-free and culture-based FE
-
-```{r FE comp}
-source(paste0(script.dir, "ComparisonCultureFreeCultureBased.R"))
-```
-
-# Other
-
-The following scripts helped generate data used in the above analyses, background analyses, and maps.
-
-EnvironmentalDistance.R: Code used to create environmental distance matrices for distance decay analyses.
-GeneratePairwiseDistance.R: Code used to create community pairwise distance matrix for distance decay analyses.
-HuangClimateMap.R: Creates maps used in Figure 1.
-InterRunVariabilityIllumina.R: Assess for variability between Illumina runs by comparing samples sequenced across both Illumina runs.
-Worldclim.R: Downloads worldclim data used in analyses.
-MockCommunity.R: creates Supplementary figure S4.
-Climate.R
-functions.R
