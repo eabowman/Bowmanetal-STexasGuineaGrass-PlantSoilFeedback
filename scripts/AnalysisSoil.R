@@ -1,6 +1,9 @@
 ## Script to analyze soil nutrients and texture to test for differences
-## based on invasion and pasture (geography)
+## based on invasion 
 ## Written by Dr. Elizabeth Bowman Dec. 8, 2020
+
+## Anova results are not shown in manuscript as none were significant
+## Plots of soild ata are shown in Supplementary fig. S2
 
 # install.packages('devtools')
 library(devtools)
@@ -10,10 +13,7 @@ library(ggbiplot)
 #install.packages('ggpubr')
 library(ggpubr)
 
-# change number of decimal points format to 4
-options(digits = 4)
-
-soil.data <- read.csv('data/data.autoclave.effect.csv', as.is = T)
+soil.data <- read.csv('data/data.soil.csv', as.is = T)
 
 # log transform non-normal data
 soil.data %>%
@@ -22,7 +22,7 @@ soil.data %>%
          log.S = log(S)) -> soil.data
 
 # --------------------------------------------------------------------------#
-#--Data manipulation and analysis----
+# Aanalysis of variance of soil characteristics as a function of invasion----
 # --------------------------------------------------------------------------#
 # isolate unautoclaved soil data
 soil.data %>%
@@ -38,7 +38,7 @@ soil.results <- data.frame(soil.characteristics =
                                 p = NA)
 
 
-# pH
+## pH ----
 lm.pH <- lm(pH ~ invasion, data = soil.data)
 anova.pH <- anova(lm.pH)
 soil.results[soil.results$soil.characteristics == 'pH',
@@ -50,7 +50,7 @@ soil.results[soil.results$soil.characteristics == 'pH',
 soil.results[soil.results$soil.characteristics == 'pH',
                     'p'] <- anova.pH$`Pr(>F)`[1]
 
-# log.EC
+## log.EC ----
 lm.EC <- lm(log.EC ~ invasion, data = soil.data)
 anova.EC <- anova(lm.EC)
 soil.results[soil.results$soil.characteristics == 'log.EC',
@@ -62,7 +62,7 @@ soil.results[soil.results$soil.characteristics == 'log.EC',
 soil.results[soil.results$soil.characteristics == 'log.EC',
                     'p'] <- anova.EC$`Pr(>F)`[1]
 
-# Nitrate
+## Nitrate ----
 lm.N <- lm(Nitrate ~ invasion, data = soil.data)
 anova.N <- anova(lm.N)
 soil.results[soil.results$soil.characteristics == 'Nitrate',
@@ -74,7 +74,7 @@ soil.results[soil.results$soil.characteristics == 'Nitrate',
 soil.results[soil.results$soil.characteristics == 'Nitrate',
                     'p'] <- anova.N$`Pr(>F)`[1]
 
-# log.P
+## log.P ----
 lm.P <- lm(log.P ~ invasion, data = soil.data)
 anova.P <- anova(lm.P)
 soil.results[soil.results$soil.characteristics == 'log.P',
@@ -86,7 +86,7 @@ soil.results[soil.results$soil.characteristics == 'log.P',
 soil.results[soil.results$soil.characteristics == 'log.P',
                     'p'] <- anova.P$`Pr(>F)`[1]
 
-# K
+## K ----
 lm.K <- lm(K ~ invasion, data = soil.data)
 anova.K <- anova(lm.K)
 soil.results[soil.results$soil.characteristics == 'K',
@@ -98,7 +98,7 @@ soil.results[soil.results$soil.characteristics == 'K',
 soil.results[soil.results$soil.characteristics == 'K',
                     'p'] <- anova.K$`Pr(>F)`[1]
 
-# Mg
+## Mg ----
 lm.Mg <- lm(Mg ~ invasion, data = soil.data)
 anova.Mg <- anova(lm.Mg)
 soil.results[soil.results$soil.characteristics == 'Mg',
@@ -110,7 +110,7 @@ soil.results[soil.results$soil.characteristics == 'Mg',
 soil.results[soil.results$soil.characteristics == 'Mg',
                     'p'] <- anova.Mg$`Pr(>F)`[1]
 
-# log.S
+## log.S ----
 lm.S <- lm(log.S ~ invasion, data = soil.data)
 anova.S <- anova(lm.S)
 soil.results[soil.results$soil.characteristics == 'log.S',
@@ -122,7 +122,7 @@ soil.results[soil.results$soil.characteristics == 'log.S',
 soil.results[soil.results$soil.characteristics == 'log.S',
                     'p'] <- anova.S$`Pr(>F)`[1]
 
-# Na
+## Na ----
 lm.Na <- lm(Na ~ invasion, data = soil.data)
 anova.Na <- anova(lm.Na)
 soil.results[soil.results$soil.characteristics == 'Na',
@@ -134,7 +134,7 @@ soil.results[soil.results$soil.characteristics == 'Na',
 soil.results[soil.results$soil.characteristics == 'Na',
                     'p'] <- anova.Na$`Pr(>F)`[1]
 
-# Ca
+## Ca ----
 lm.Ca <- lm(Ca ~ invasion, data = soil.data)
 anova.Ca <- anova(lm.Ca)
 soil.results[soil.results$soil.characteristics == 'Ca',
@@ -148,14 +148,19 @@ soil.results[soil.results$soil.characteristics == 'Ca',
 
 write.csv(soil.results, 'results/Soil_results.csv', row.names = F)
 
-#<< Plot of soil characteristics >> -------
+# --------------------------------------------------------------------#
+# Plots ----
+# --------------------------------------------------------------------#
+
 pH_plot <- ggplot(soil.data, aes(x = invasion,
                       y = pH)) +
   geom_boxplot() +
   theme_classic() +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 EC_plot <- ggplot(soil.data, aes(x = invasion,
                       y = EC)) +
@@ -164,7 +169,9 @@ EC_plot <- ggplot(soil.data, aes(x = invasion,
   xlab('EC (umhos/cm)') +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 Nitrate_plot <- ggplot(soil.data, aes(x = invasion,
                       y = Nitrate)) +
@@ -173,7 +180,9 @@ Nitrate_plot <- ggplot(soil.data, aes(x = invasion,
   xlab('Nitrate (ppm)') +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 P_plot <- ggplot(soil.data, aes(x = invasion,
                       y = P)) +
@@ -182,7 +191,9 @@ P_plot <- ggplot(soil.data, aes(x = invasion,
   xlab('P (ppm)') +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 K_plot <- ggplot(soil.data, aes(x = invasion,
                       y = K)) +
@@ -191,7 +202,9 @@ K_plot <- ggplot(soil.data, aes(x = invasion,
   xlab('K (ppm)') +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 Mg_plot <- ggplot(soil.data, aes(x = invasion,
                       y = Mg)) +
@@ -200,151 +213,55 @@ Mg_plot <- ggplot(soil.data, aes(x = invasion,
   xlab('Mg (ppm)') +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
-        axis.ticks.x=element_blank())
+        axis.ticks.x=element_blank(),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 S_plot <- ggplot(soil.data, aes(x = invasion,
                       y = S)) +
   geom_boxplot() +
   theme_classic() +
   xlab('S (ppm)') +
-  theme(axis.title.x=element_blank())
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size = 20, color = 'black'),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 Na_plot <- ggplot(soil.data, aes(x = invasion,
                       y = Na)) +
   geom_boxplot() +
   theme_classic() +
   xlab('Na (ppm)') +
-  theme(axis.title.x=element_blank())
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size = 20, color = 'black'),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 Ca_plot <- ggplot(soil.data, aes(x = invasion,
                       y = Ca)) +
   geom_boxplot() +
   theme_classic() +
   xlab('Ca (ppm)') +
-  theme(axis.title.x=element_blank())
+  theme(axis.title.x=element_blank(),
+        axis.text.x = element_text(size = 20, color = 'black'),
+        axis.text.y = element_text(size = 16, color = 'black'),
+        axis.title.y = element_text(size = 20, color = 'black'))
 
 soil_plots <- ggarrange(pH_plot, EC_plot, Nitrate_plot, P_plot, K_plot, Mg_plot,
                         S_plot, Na_plot, Ca_plot,
-                        labels = c('A','B','C','D','E','F','G','H','I'),
+                        labels = c('a','b','c','d','e','f','g','h','i'),
                         ncol = 3, nrow = 3)
-ggsave('figures/SupplementaryFig_soil.tiff', device = 'tiff',
-       plot = soil_plots, width = 15, height = 10, units = 'cm', dpi = 300)
+ggsave('figures/SupplementaryFigS2.tiff', device = 'tiff',
+       plot = soil_plots,
+       width = 30, height = 20, units = 'cm',
+       dpi = 300)
+# --------------------------------------------------------------------#
+# Summary data ----
+# --------------------------------------------------------------------#
 
 soil.data %>%
   group_by(invasion) %>%
   select(pH, EC, Nitrate, P, K, Mg, S, Na, Ca) %>%
   summarize_all(mean) -> soil.summary
+
 write.csv(soil.summary, 'results/soil_summary.csv', row.names = T)
-
-# --------------------------------------------------------------------------#
-#--Soil characteristics as a function of invasion: Graphs---
-#-- Log.EC, Log.P, Log.S, Na
-# --------------------------------------------------------------------------#
-soil.data$autoclave.time <- factor(soil.data$autoclave.time)
-
-##****Check outliers
-
-# Log EC
-graph.logEC <- ggplot(soil.data, aes(x = invasion,
-                                     y = log.EC)) +
-  geom_boxplot() +
-  ylab('Log EC (umhos/cm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/logEC_invasion.tiff', device = 'tiff', plot = graph.logEC,
-       width = 6, height = 6, units = 'cm', dpi = 300)
-
-# Log P
-graph.logP <- ggplot(soil.data, aes(x = invasion,
-                                     y = log.P)) +
-  geom_boxplot() +
-  ylab('Log phosphorus (ppm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/logP_invasion.tiff', device = 'tiff', plot = graph.logP,
-       width = 6, height = 6, units = 'cm', dpi = 300)
-
-# Log S
-graph.logS <- ggplot(soil.data, aes(x = invasion,
-                                     y = log.S)) +
-  geom_boxplot() +
-  ylab('Log sulfur (ppm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/logS_invasion.tiff', device = 'tiff', plot = graph.logS,
-       width = 6, height = 6, units = 'cm', dpi = 300)
-
-# Na
-graph.Na <- ggplot(soil.data, aes(x = invasion,
-                                     y = Na)) +
-  geom_boxplot() +
-  ylab('Sodium (ppm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/Na_invasion.tiff', device = 'tiff', plot = graph.Na,
-       width = 6, height = 6, units = 'cm', dpi = 300)
-
-# Nitrate
-graph.N <- ggplot(soil.data, aes(x = invasion,
-                                     y = Nitrate)) +
-  geom_boxplot() +
-  ylab('Nitrate (ppm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/Nitrate_invasion.tiff', device = 'tiff', plot = graph.N,
-       width = 6, height = 6, units = 'cm', dpi = 300)
-
-# Magnesium
-graph.Mg <- ggplot(soil.data, aes(x = invasion,
-                                     y = Mg)) +
-  geom_boxplot() +
-  ylab('Magnesium (ppm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/Mg_invasion.tiff', device = 'tiff', plot = graph.Mg,
-       width = 6, height = 6, units = 'cm', dpi = 300)
-
-# pH
-graph.ph <- ggplot(soil.data, aes(x = invasion,
-                                     y = pH)) +
-  geom_boxplot() +
-  ylab('pH (ppm)') +
-  xlab('') +
-  theme_bw() +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        axis.line = element_line(colour = "black")) +
-  theme(axis.text = element_text(color = "black"))
-  
-ggsave('figures/ph_invasion.tiff', device = 'tiff', plot = graph.ph,
-       width = 6, height = 6, units = 'cm', dpi = 300)
