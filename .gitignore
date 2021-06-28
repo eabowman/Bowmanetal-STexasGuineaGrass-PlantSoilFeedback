@@ -53,3 +53,11 @@ results/GerminationSummaryData.csv
 results/NativeSeedlingResults.csv
 PCASoil_Invasion.png
 figures/GuineaHeight_InvasionSoilTreatment.tiff
+
+# archives
+scripts/script.archive/
+figures/Archive/
+data/data.archive/
+
+data/.DS_Store
+figures/.DS_Store
