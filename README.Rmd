@@ -58,7 +58,7 @@ The results from these analyses are shown in Table II. The plots are from
 Fig. I and Fig. IIIA.
 
 ```{r Effect on Guinea Grass growth}
-source(paste0(script.dir, "AnalysisGuineaGrass.R"))
+source(paste0(script.dir, "AnalysesGuineaGrass.R"))
 ```
 
 # Plant-soil feedback effect on the native seed bank
@@ -67,7 +67,7 @@ Fig. II, Fig. IIIB, and Fig. IIIC.
 
 
 ```{r Effect on growth of the native seedbank}
-source(paste0(script.dir, "AnalysisNativeCommunity.R"))
+source(paste0(script.dir, "AnalysesNativeCommunity.R"))
 ```
 
 # Analysis of soil data
