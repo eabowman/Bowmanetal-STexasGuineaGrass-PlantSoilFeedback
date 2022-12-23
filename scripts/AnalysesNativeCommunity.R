@@ -3,7 +3,7 @@
 ## mixed soil sampling, MSS) and invasion (invaded and non-invaded).
 ## Written by Dr. Elizabeth Bowman on Nov. 11, 2020
 
-## Analysis shown in Table II, Fig. 2, and Supplementary fig S2b, S3b, and S3c
+## Analysis shown in Table II, Fig. 2, Fig. 3, and Supplementary fig S2b, S3b, and S3c
 
 # Read in data files
 native.data <- read.csv('data/data.NativeCommunity.csv', as.is = T)
