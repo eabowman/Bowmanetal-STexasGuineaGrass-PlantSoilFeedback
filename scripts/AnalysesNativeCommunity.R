@@ -3,11 +3,12 @@
 ## mixed soil sampling, MSS) and invasion (invaded and non-invaded).
 ## Written by Dr. Elizabeth Bowman on Nov. 11, 2020
 
-## Analysis shown in Table III and Fig. II and IIIb and IIIc
+## Analysis shown in Table II, Fig. 2, and Supplementary fig S2b, S3b, and S3c
 
+# Read in data files
 native.data <- read.csv('data/data.NativeCommunity.csv', as.is = T)
 
-# factor variables
+# factor variables soil treatment and pasture
 native.data$soil.treatment <- as.factor(native.data$soil.treatment)
 native.data$pasture <- as.factor(native.data$pasture)
 
@@ -16,7 +17,7 @@ native.data$pasture <- as.factor(native.data$pasture)
 # --------------------------------------------------------------------------#
 
 ## Seedling----
-# Overall
+### Total seedling count ----
 glm.seedling <- lme(log.seedling.total ~ invasion * soil.treatment,
                     random = ~ 1 | pasture,
                     method = 'ML',
@@ -29,7 +30,7 @@ write.csv(as.data.frame(glm.summary), 'results/NativeSeedling_GLM.csv',
 
 TukeyHSD(aov(lm(log.seedling.total ~ invasion * soil.treatment, data = native.data)))
 
-# First week
+### Seedling emergence in the first week ----
 native.data <- mutate(native.data, log.seedlings.week1 = log(seedlings.week1+1))
 glm.seedling <- lme(log.seedlings.week1 ~ invasion * soil.treatment,
                     random = ~ 1 | pasture,
@@ -42,7 +43,7 @@ write.csv(as.data.frame(glm.summary), 'results/NativeSeedling_Week1_GLM.csv',
           row.names = T)
 
 ## Plant abundance----
-### Overall ----
+### Total count ----
 # Combine dicot and monocot abundance; log transform overall
 native.data %>%
   mutate(abundance.overall = monocot.abundance + dicot.abundance,
@@ -64,7 +65,7 @@ write.csv(as.data.frame(glm.abund.overall),
 TukeyHSD(aov(log.abund.overall ~ invasion * soil.treatment,
              data = native.abund))
 
-### Plant functional group: dicot and monocot ----
+### Grouped by plant functional group: dicot and monocot ----
 native.abund %>%
   select(sample, soil.treatment, invasion, pasture,
          monocot.abundance, dicot.abundance) %>%
@@ -107,8 +108,8 @@ write.csv(as.data.frame(glm.summary), 'results/NativeBiomass_GLM.csv',
 TukeyHSD(aov(log.biomass.p.1 ~ invasion * soil.treatment,
              data = biomass.native))
 
-## Species richness----
-### Overall ----
+## Species richness: Morphological species richness----
+### Total final morpho species richness ----
 # Combine dicot and monocot richness
 native.data %>%
   mutate(richness.overall = monocot.richness + dicot.richness,
@@ -189,7 +190,7 @@ seedling.invasion <- ggplot(native.data, aes(x = invasion,
         plot.title = element_text(color = "black",
                                   size = 16))
 
-ggsave('figures/SupplementaryFig2b.tiff', device = 'tiff',
+ggsave('figures/SupplementaryFigS2b.tiff', device = 'tiff',
        plot = seedling.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
 
 ## Biomass----
@@ -209,7 +210,7 @@ native.biomass <- ggplot(biomass.native, aes(x = soil.treatment,
   theme(strip.text.x = element_text(size = 12)) +
   theme(axis.text = element_text(color = "black"))
 
-ggsave('figures/Fig3c.tiff', device = 'tiff',
+ggsave('figures/SupplementaryFigS3c.tiff', device = 'tiff',
        plot = native.biomass, width = 10, height = 10, units = 'cm', dpi = 300)
 
 ### invasion ----
@@ -247,7 +248,7 @@ native.abund.plot <- ggplot(native.abund, aes(x = soil.treatment,
   theme(strip.text.x = element_text(size = 12)) +
   theme(axis.text = element_text(color = "black"))
 
-ggsave('figures/Fig3b.tiff', device = 'tiff',
+ggsave('figures/SupplementaryFigS3b.tiff', device = 'tiff',
        plot = native.abund.plot, width = 10, height = 10, units = 'cm', dpi = 300)
 
 ### Invasion ---
@@ -296,7 +297,7 @@ native.abund.func <- ggplot(native.abund.functional, aes(x = invasion,
   theme(strip.text.x = element_text(size = 12)) +
   theme(axis.text = element_text(color = "black"))
 
-ggsave('figures/SupplementaryFigS3a.tiff', device = 'tiff',
+ggsave('figures/Fig3a.tiff', device = 'tiff',
        plot = native.abund.func, width = 12, height = 10, units = 'cm', dpi = 300)
 
 ## Richness----
@@ -347,7 +348,7 @@ native.rich.func <- ggplot(native.rich.functional, aes(x = invasion,
   theme(strip.text.x = element_text(size = 12)) +
   theme(axis.text = element_text(color = "black"))
 
-ggsave('figures/SupplementaryFigure3b.tiff', device = 'tiff',
+ggsave('figures/Figure3b.tiff', device = 'tiff',
        plot = native.rich.func, width = 12, height = 10, units = 'cm', dpi = 300)
 
 # --------------------------------------------------------------------------#
