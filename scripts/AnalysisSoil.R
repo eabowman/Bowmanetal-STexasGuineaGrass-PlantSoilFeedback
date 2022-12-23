@@ -3,7 +3,7 @@
 ## Written by Dr. Elizabeth Bowman Dec. 8, 2020
 
 ## Anova results are not shown in manuscript as none were significant
-## Plots of soild ata are shown in Supplementary fig. S2
+## Plots of soild ata are shown in Fig. 4
 
 # install.packages('devtools')
 library(devtools)
