@@ -5,8 +5,8 @@
 
 ## Analysis shown in Table II and Fig. I and IIIa
 
-plant.data <- read.csv('data_output/data.Guinea.csv', as.is = T)
-time.data <- read.csv('data_output/data.GuineaHeightOverTime.csv', as.is = T)
+plant.data <- read.csv('data/data.Guinea.csv', as.is = T)
+time.data <- read.csv('data/data.GuineaHeightOverTime.csv', as.is = T)
 
 # factor variables
 plant.data$soil.treatment <- as.factor(plant.data$soil.treatment)
@@ -259,8 +259,9 @@ ggsave('figures/Fig3A.tiff', device = 'tiff',
 seedling.invasion <- ggplot(plant.data, aes(x = invasion,
                           y = guinea.grass.seedling.week.1)) +
   geom_boxplot() +
-  ylab('Seedling count') +
+  ylab('Seedling count: week 1') +
   xlab('') +
+  ggtitle("Guinea grass") +
   theme_classic() +
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(),
@@ -268,9 +269,11 @@ seedling.invasion <- ggplot(plant.data, aes(x = invasion,
   theme(axis.text=element_text(size=14),
         axis.title=element_text(size=16,face="bold")) +
   theme(strip.text.x = element_text(size = 12)) +
-  theme(axis.text = element_text(color = "black"))
+  theme(axis.text = element_text(color = "black"),
+        plot.title = element_text(color = "black",
+                                  size = 16))
 
-ggsave('figures/SupplementaryFigureS1.tiff', device = 'tiff',
+ggsave('figures/SupplementaryFigS2a.tiff', device = 'tiff',
        plot = seedling.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
 
 # --------------------------------------------------------------------------#

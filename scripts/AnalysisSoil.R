@@ -7,10 +7,10 @@
 
 # install.packages('devtools')
 library(devtools)
-#install_github('vqv/ggbiplot')
+# install_github('vqv/ggbiplot')
 library(tidyverse)
 library(ggbiplot)
-#install.packages('ggpubr')
+# install.packages('ggpubr')
 library(ggpubr)
 
 soil.data <- read.csv('data/data.soil.csv', as.is = T)
@@ -32,121 +32,108 @@ soil.data %>%
 soil.results <- data.frame(soil.characteristics = 
                                   c('pH','log.EC','Nitrate','log.P','K','Mg',
                                     'log.S','Na','Ca'),
-                                df.1 = NA,
-                                df.2 = NA,
-                                F.stat = NA,
+                                t = NA,
+                                df = NA,
                                 p = NA)
 
 
 ## pH ----
-lm.pH <- lm(pH ~ invasion, data = soil.data)
-anova.pH <- anova(lm.pH)
+ttest.pH <- t.test(pH ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'pH',
-                    'df.1'] <- anova.pH$Df[1]
+                    't'] <- ttest.pH$statistic[1]
 soil.results[soil.results$soil.characteristics == 'pH',
-                    'df.2'] <- anova.pH$Df[2]
+                    'df'] <- ttest.pH$parameter[1]
 soil.results[soil.results$soil.characteristics == 'pH',
-                    'F.stat'] <- anova.pH$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'pH',
-                    'p'] <- anova.pH$`Pr(>F)`[1]
+                    'p'] <- ttest.pH$p.value[1]
 
 ## log.EC ----
-lm.EC <- lm(log.EC ~ invasion, data = soil.data)
-anova.EC <- anova(lm.EC)
+ttest.EC <- t.test(log.EC ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'log.EC',
-                    'df.1'] <- anova.EC$Df[1]
+                    't'] <- ttest.EC$statistic[1]
 soil.results[soil.results$soil.characteristics == 'log.EC',
-                    'df.2'] <- anova.EC$Df[2]
+                    'df'] <- ttest.EC$parameter[1]
 soil.results[soil.results$soil.characteristics == 'log.EC',
-                    'F.stat'] <- anova.EC$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'log.EC',
-                    'p'] <- anova.EC$`Pr(>F)`[1]
+                    'p'] <- ttest.EC$p.value[1]
 
 ## Nitrate ----
-lm.N <- lm(Nitrate ~ invasion, data = soil.data)
-anova.N <- anova(lm.N)
+ttest.N <- t.test(Nitrate ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'Nitrate',
-                    'df.1'] <- anova.N$Df[1]
+                    't'] <- ttest.N$statistic[1]
 soil.results[soil.results$soil.characteristics == 'Nitrate',
-                    'df.2'] <- anova.N$Df[2]
+                    'df'] <- ttest.N$parameter[1]
 soil.results[soil.results$soil.characteristics == 'Nitrate',
-                    'F.stat'] <- anova.N$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'Nitrate',
-                    'p'] <- anova.N$`Pr(>F)`[1]
+                    'p'] <- ttest.N$p.value[1]
 
 ## log.P ----
-lm.P <- lm(log.P ~ invasion, data = soil.data)
-anova.P <- anova(lm.P)
+ttest.P <- t.test(log.P ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'log.P',
-                    'df.1'] <- anova.P$Df[1]
+                    't'] <- ttest.P$statistic[1]
 soil.results[soil.results$soil.characteristics == 'log.P',
-                    'df.2'] <- anova.P$Df[2]
+                    'df'] <- ttest.P$parameter[1]
 soil.results[soil.results$soil.characteristics == 'log.P',
-                    'F.stat'] <- anova.P$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'log.P',
-                    'p'] <- anova.P$`Pr(>F)`[1]
+                    'p'] <- ttest.P$p.value[1]
 
 ## K ----
-lm.K <- lm(K ~ invasion, data = soil.data)
-anova.K <- anova(lm.K)
+ttest.K <- t.test(K ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'K',
-                    'df.1'] <- anova.K$Df[1]
+                    't'] <- ttest.K$statistic[1]
 soil.results[soil.results$soil.characteristics == 'K',
-                    'df.2'] <- anova.K$Df[2]
+                    'df'] <- ttest.K$parameter[1]
 soil.results[soil.results$soil.characteristics == 'K',
-                    'F.stat'] <- anova.K$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'K',
-                    'p'] <- anova.K$`Pr(>F)`[1]
+                    'p'] <- ttest.K$p.value[1]
 
 ## Mg ----
-lm.Mg <- lm(Mg ~ invasion, data = soil.data)
-anova.Mg <- anova(lm.Mg)
+ttest.Mg <- t.test(Mg ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'Mg',
-                    'df.1'] <- anova.Mg$Df[1]
+                    't'] <- ttest.Mg$statistic[1]
 soil.results[soil.results$soil.characteristics == 'Mg',
-                    'df.2'] <- anova.Mg$Df[2]
+                    'df'] <- ttest.Mg$parameter[1]
 soil.results[soil.results$soil.characteristics == 'Mg',
-                    'F.stat'] <- anova.Mg$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'Mg',
-                    'p'] <- anova.Mg$`Pr(>F)`[1]
+                    'p'] <- ttest.Mg$p.value[1]
 
 ## log.S ----
-lm.S <- lm(log.S ~ invasion, data = soil.data)
-anova.S <- anova(lm.S)
+ttest.S <- t.test(log.S ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'log.S',
-                    'df.1'] <- anova.S$Df[1]
+                    't'] <- ttest.S$statistic[1]
 soil.results[soil.results$soil.characteristics == 'log.S',
-                    'df.2'] <- anova.S$Df[2]
+                    'df'] <- ttest.S$parameter[1]
 soil.results[soil.results$soil.characteristics == 'log.S',
-                    'F.stat'] <- anova.S$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'log.S',
-                    'p'] <- anova.S$`Pr(>F)`[1]
+                    'p'] <- ttest.S$p.value[1]
 
 ## Na ----
-lm.Na <- lm(Na ~ invasion, data = soil.data)
-anova.Na <- anova(lm.Na)
+ttest.Na <- t.test(Na ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'Na',
-                    'df.1'] <- anova.Na$Df[1]
+                    't'] <- ttest.Na$statistic[1]
 soil.results[soil.results$soil.characteristics == 'Na',
-                    'df.2'] <- anova.Na$Df[2]
+                    'df'] <- ttest.Na$parameter[1]
 soil.results[soil.results$soil.characteristics == 'Na',
-                    'F.stat'] <- anova.Na$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'Na',
-                    'p'] <- anova.Na$`Pr(>F)`[1]
+                    'p'] <- ttest.Na$p.value[1]
+
 
 ## Ca ----
-lm.Ca <- lm(Ca ~ invasion, data = soil.data)
-anova.Ca <- anova(lm.Ca)
+ttest.Ca <- t.test(Ca ~ invasion, data = soil.data)
+
 soil.results[soil.results$soil.characteristics == 'Ca',
-                    'df.1'] <- anova.Ca$Df[1]
+                    't'] <- ttest.Ca$statistic[1]
 soil.results[soil.results$soil.characteristics == 'Ca',
-                    'df.2'] <- anova.Ca$Df[2]
+                    'df'] <- ttest.Ca$parameter[1]
 soil.results[soil.results$soil.characteristics == 'Ca',
-                    'F.stat'] <- anova.Ca$`F value`[1]
-soil.results[soil.results$soil.characteristics == 'Ca',
-                    'p'] <- anova.Ca$`Pr(>F)`[1]
+                    'p'] <- ttest.Ca$p.value[1]
 
 write.csv(soil.results, 'results/Soil_results.csv', row.names = F)
+
+soil.data %>% 
+  group_by(invasion) %>%
+  summarise(across(c(pH, EC, Nitrate, P, K, Mg, S, Na, Ca),
+                   c(mean,sd))) -> soil.summary
 
 # --------------------------------------------------------------------#
 # Plots ----

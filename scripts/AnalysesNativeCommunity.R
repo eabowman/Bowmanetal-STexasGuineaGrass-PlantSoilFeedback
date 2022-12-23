@@ -5,7 +5,7 @@
 
 ## Analysis shown in Table III and Fig. II and IIIb and IIIc
 
-native.data <- read.csv('data_output/data.NativeCommunity.csv', as.is = T)
+native.data <- read.csv('data/data.NativeCommunity.csv', as.is = T)
 
 # factor variables
 native.data$soil.treatment <- as.factor(native.data$soil.treatment)
@@ -22,30 +22,24 @@ glm.seedling <- lme(log.seedling.total ~ invasion * soil.treatment,
                     method = 'ML',
                     data = native.data)
 glm.summary <- anova(glm.seedling) 
-# invasion is sig
+# invasion and invasion * soil treatment is sig
 
 write.csv(as.data.frame(glm.summary), 'results/NativeSeedling_GLM.csv',
           row.names = T)
 
-## Biomass----
-# Transform and remove outlier
-native.data %>%
-  mutate(log.biomass.p.1 = log(dry.weight.g + 1)) %>%
-  filter(sample != 'ESI.MS1') -> biomass.native
+TukeyHSD(aov(lm(log.seedling.total ~ invasion * soil.treatment, data = native.data)))
 
-glm.seedling <- lme(log.biomass.p.1 ~ invasion * soil.treatment,
+# First week
+native.data <- mutate(native.data, log.seedlings.week1 = log(seedlings.week1+1))
+glm.seedling <- lme(log.seedlings.week1 ~ invasion * soil.treatment,
                     random = ~ 1 | pasture,
                     method = 'ML',
-                    data = biomass.native)
+                    data = native.data)
 glm.summary <- anova(glm.seedling) 
-# invasion and soil treatment is sig
+# invasion is sig
 
-write.csv(as.data.frame(glm.summary), 'results/NativeBiomass_GLM.csv',
+write.csv(as.data.frame(glm.summary), 'results/NativeSeedling_Week1_GLM.csv',
           row.names = T)
-
-# Tukey's HSD
-TukeyHSD(aov(log.biomass.p.1 ~ invasion * soil.treatment,
-             data = biomass.native))
 
 ## Plant abundance----
 ### Overall ----
@@ -93,6 +87,26 @@ write.csv(as.data.frame(glm.abund.func),
           'results/NativeAbundanceFunctionalGroup_GLM.csv',
           row.names = T)
 
+## Biomass----
+# Transform and remove outlier
+native.data %>%
+  mutate(log.biomass.p.1 = log(dry.weight.g + 1)) %>%
+  filter(sample != 'ESI.MS1') -> biomass.native
+
+glm.seedling <- lme(log.biomass.p.1 ~ invasion * soil.treatment,
+                    random = ~ 1 | pasture,
+                    method = 'ML',
+                    data = biomass.native)
+glm.summary <- anova(glm.seedling) 
+# invasion and soil treatment is sig
+
+write.csv(as.data.frame(glm.summary), 'results/NativeBiomass_GLM.csv',
+          row.names = T)
+
+# Tukey's HSD
+TukeyHSD(aov(log.biomass.p.1 ~ invasion * soil.treatment,
+             data = biomass.native))
+
 ## Species richness----
 ### Overall ----
 # Combine dicot and monocot richness
@@ -139,7 +153,7 @@ write.csv(as.data.frame(glm.richness.func),
 # --------------------------------------------------------------------------#
 
 ## Seedlings----
-# Invasion only
+# Invasion only: total seedlings
 seedling.invasion <- ggplot(native.data, aes(x = invasion,
                           y = seedling.total)) +
   geom_boxplot() +
@@ -155,6 +169,27 @@ seedling.invasion <- ggplot(native.data, aes(x = invasion,
   theme(axis.text = element_text(color = "black"))
 
 ggsave('figures/Fig2a.tiff', device = 'tiff',
+       plot = seedling.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
+
+# Invasion only: seedlings first week
+seedling.invasion <- ggplot(native.data, aes(x = invasion,
+                          y = seedlings.week1)) +
+  geom_boxplot() +
+  ylab('Seedling count: week 1') +
+  xlab('') +
+  ggtitle('Seed bank') +
+  theme_classic() +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        axis.line = element_line(colour = "black")) +
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=16,face="bold")) +
+  theme(strip.text.x = element_text(size = 12)) +
+  theme(axis.text = element_text(color = "black"),
+        plot.title = element_text(color = "black",
+                                  size = 16))
+
+ggsave('figures/SupplementaryFig2b.tiff', device = 'tiff',
        plot = seedling.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
 
 ## Biomass----
@@ -261,7 +296,7 @@ native.abund.func <- ggplot(native.abund.functional, aes(x = invasion,
   theme(strip.text.x = element_text(size = 12)) +
   theme(axis.text = element_text(color = "black"))
 
-ggsave('figures/SupplementaryFigureS3a.tiff', device = 'tiff',
+ggsave('figures/SupplementaryFigS3a.tiff', device = 'tiff',
        plot = native.abund.func, width = 12, height = 10, units = 'cm', dpi = 300)
 
 ## Richness----
