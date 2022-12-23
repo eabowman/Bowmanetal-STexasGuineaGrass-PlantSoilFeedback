@@ -3,12 +3,13 @@
 ## mixed soil sampling, MSS) and invasion (invaded and non-invaded).
 ## Written by Dr. Elizabeth Bowman on Nov. 11, 2020
 
-## Analysis shown in Table II and Fig. I and IIIa
+## Analysis shown in Table I, Fig. I, and Supplementary Fig. S2A and S3A
 
+# Read in data files
 plant.data <- read.csv('data/data.Guinea.csv', as.is = T)
 time.data <- read.csv('data/data.GuineaHeightOverTime.csv', as.is = T)
 
-# factor variables
+# factor variables for soil treatmen and pasture in the plant.data and time.data files
 plant.data$soil.treatment <- as.factor(plant.data$soil.treatment)
 plant.data$pasture <- as.factor(plant.data$pasture)
 
@@ -19,10 +20,10 @@ time.data$pasture <- as.factor(time.data$pasture)
 # Guinea grass: GLM function of soil treatment and invasion ----
 # --------------------------------------------------------------------------#
 
-## Seedlings----
+## Seedling data----
 #Remove -inf
 seedling.data <- filter(plant.data, !is.na(log.guinea.grass.seedling.total))
-### Overall ----
+### Final seedling count ----
 glm.seedling <- lme(log.guinea.grass.seedling.total ~ invasion * soil.treatment,
                     random = ~ 1 | pasture,
                     method = 'ML',
@@ -37,8 +38,10 @@ write.csv(as.data.frame(glm.summary), 'results/GuineaSeedling_OverallGLM.csv',
 TukeyHSD(aov(log.guinea.grass.seedling.total ~ invasion * soil.treatment,
              data = seedling.data))
 
-### First week (i.e. do seeds in soil from invaded sites germinate faster than seeds grown in soil from noninvaded sites?) ----
-## add in two columns (transform Guinea grass seedling data from the 1st week)
+### Seedling emergence in the first week ----
+# i.e. do seeds in soil from invaded sites germinate faster than seeds grown in soil from noninvaded sites?)
+
+## add in two columns (log + 1 transform Guinea grass seedling data from the 1st week)
 mutate(plant.data,
        guinea.grass.seedling.week.1.rev = guinea.grass.seedling.week.1 + 1,
        log.guinea.seedling.week.1 = log(guinea.grass.seedling.week.1.rev)) -> plant.data
@@ -53,7 +56,7 @@ glm.summary <- anova(glm.seedling)
 write.csv(as.data.frame(glm.summary), 'results/GuineaSeedling_Week1GLM.csv',
           row.names = T)
 
-## Height----
+## Plant height----
 # Isolate final height (week 6) 
 time.data.week6 <- filter(time.data, week == 'week6')
 
@@ -252,7 +255,7 @@ seedling.invasion <- ggplot(seedling.data, aes(x = soil.treatment,
   theme(strip.text.x = element_text(size = 12)) +
   theme(axis.text = element_text(color = "black"))
 
-ggsave('figures/Fig3A.tiff', device = 'tiff',
+ggsave('figures/SupplementaryFigS3A.tiff', device = 'tiff',
        plot = seedling.invasion, width = 10, height = 10, units = 'cm', dpi = 300)
 
 # Week 1
