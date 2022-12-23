@@ -4,7 +4,7 @@ author: "Dr. Elizabeth Bowman"
 date: "6/28/2021"
 output: html_document
 ---
-The folders here contain R scripts and data files for the article "Evidence of plant-soil feedback in South Texas grasslands associated with invasive Guinea grass independent of soil inoculation method " written by Elizabeth A. Bowman, Robert M. Plowes, and Lawrence E. Gilbert
+The folders here contain R scripts and data files for the Neobiota article "Evidence of plant-soil feedback in South Texas grasslands associated with invasive Guinea grass." written by Elizabeth A. Bowman, Robert M. Plowes, and Lawrence E. Gilbert
 
 Elizabeth A. Bowman is the author for correspondence on this article. 
 Address: 
@@ -41,7 +41,7 @@ appropriate folders.
 dat.dir <- 'data/'
 fig.dir <- 'figures/'
 res.dir <- 'results/'
-script.dir <- 'script/'
+script.dir <- 'scripts/'
 ```
 
 # Load packages  
@@ -54,16 +54,16 @@ source(paste0(script.dir, "LoadLibraries.R"))
 ```
 
 # Plant-soil feedback effect on Guinea grass
-The results from these analyses are shown in Table II. The plots are from
-Fig. I and Fig. IIIA.
+The results from these analyses are shown in Table I. The plots are from
+Fig. 1 and Supplementary Fig. S2A and S3A.
 
 ```{r Effect on Guinea Grass growth}
 source(paste0(script.dir, "AnalysesGuineaGrass.R"))
 ```
 
 # Plant-soil feedback effect on the native seed bank
-The results from these analyses are shown in Table III. The plots are from
-Fig. II, Fig. IIIB, and Fig. IIIC.
+The results from these analyses are shown in Table II. The plots are from
+Fig. 2, Fig. 3, and Supplementary Fig. S2B, S3B, and S3C.
 
 
 ```{r Effect on growth of the native seedbank}
@@ -74,8 +74,8 @@ source(paste0(script.dir, "AnalysesNativeCommunity.R"))
 Effect of autoclaving on soil characteristics and differences in soil 
 characteristics as a function of invasion.
 
-Output from AnalysisAutoclaveEffect.R is Supplementary Table SI.
-Output from AnalysisSoil.R is Supplementary Figure SII
+Output from AnalysisAutoclaveEffect.R is not published in the article.
+Output from AnalysisSoil.R is in Fig. 4.
 
 ```{r Soil data}
 # Autoclaving
